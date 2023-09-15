@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   const helloHandler = () => {
-    const botMessage = createChatBotMessage('Hello. Nice to meet you.');
+    const botMessage = createChatBotMessage("Hello. Nice to meet you.");
 
     setState((prev) => ({
       ...prev,
@@ -9,47 +9,47 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     }));
   };
 
-
   const nameHandler = () => {
-
-    const botMessage = createChatBotMessage(
-      "Please enter your name",
-    );
+    const botMessage = createChatBotMessage("Please enter your name");
 
     setState((prev) => ({
       ...prev,
-      messages: [...prev.messages, botMessage]
+      messages: [...prev.messages, botMessage],
     }));
-
-
   };
 
   const ageHandler = () => {
+    const botMessage = createChatBotMessage("Please Select your age", {
+      widget: "AgeOptions",
+    });
+    setState((prev) => ({
+      ...prev,
+      messages: [...prev.messages, botMessage],
+    }));
+  };
+
+  const setSlotHandler = () => {
+    const botMessage = createChatBotMessage("Choose your slot", {
+      widget: "SlotOptions",
+    });
+    setState((prev) => ({
+      ...prev,
+      messages: [...prev.messages, botMessage],
+    }));
+  };
+
+  const setAgeHandler = () => {
     const botMessage = createChatBotMessage(
-      "Please Select your age",
+      "Thank you. In 5 seconds, bot will exit",
       {
-        widget: "AgeOptions",
+        widget: "Counter",
       }
     );
     setState((prev) => ({
       ...prev,
       messages: [...prev.messages, botMessage],
     }));
-
-  }
-
-const setAgeHandler = ()=>{
-  const botMessage = createChatBotMessage(
-    "Thank you. In 5 seconds, bot will exit",
-    {
-      widget: "Counter",
-    }
-  );
-  setState((prev) => ({
-    ...prev,
-    messages: [...prev.messages, botMessage],
-  }));
-}
+  };
 
   // Put the handleHello and handleDog function in the actions object to pass to the MessageParser
   return (
@@ -60,6 +60,7 @@ const setAgeHandler = ()=>{
             helloHandler,
             nameHandler,
             ageHandler,
+            setSlotHandler,
             setAgeHandler,
           },
         });

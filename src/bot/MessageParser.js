@@ -1,14 +1,14 @@
-import React from 'react';
-import { setName } from '../redux/student/StudentSlice';
-import { useDispatch } from 'react-redux';
+import React from "react";
+import { setName } from "../redux/student/StudentSlice";
+import { useDispatch } from "react-redux";
 const MessageParser = ({ children, actions }) => {
   const dispatch = useDispatch();
   const parse = (message) => {
     if (message) {
-       dispatch(setName(message));
-       actions.ageHandler();
+      dispatch(setName(message));
+      actions.ageHandler();
     }
-  }
+  };
 
   return (
     <div>
@@ -18,7 +18,8 @@ const MessageParser = ({ children, actions }) => {
           actions: {
             nameHandler: actions.nameHandler,
             ageHandler: actions.ageHandler,
-            setAgeHandler:actions.setAgeHandler
+            setSlotHandler: actions.setSlotHandler,
+            setAgeHandler: actions.setAgeHandler,
           },
         });
       })}
